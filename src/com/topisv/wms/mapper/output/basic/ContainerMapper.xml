@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.topisv.wms.output.basic.dao.ContainerDao">
+  <resultMap id="BaseResultMap" type="com.topisv.wms.output.basic.po.ContainerPO">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="container_code" jdbcType="VARCHAR" property="containerCode" />
+    <result column="container_type" jdbcType="VARCHAR" property="containerType" />
+    <result column="use_batch" jdbcType="VARCHAR" property="useBatch" />
+    <result column="container_status" jdbcType="VARCHAR" property="containerStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_owner" jdbcType="VARCHAR" property="createOwner" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_owner" jdbcType="VARCHAR" property="updateOwner" />
+    <result column="optimistic" jdbcType="INTEGER" property="optimistic" />
+    <result column="warehouse_code" jdbcType="VARCHAR" property="warehouseCode" />
+    <result column="location_code" jdbcType="VARCHAR" property="locationCode" />
+    <result column="shelf_code" jdbcType="VARCHAR" property="shelfCode" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, container_code, container_type, use_batch, container_status, create_time, create_owner, 
+    update_time, update_owner, optimistic, warehouse_code, location_code, shelf_code
+  </sql>
+  <select id="selectByExample" parameterType="com.topisv.wms.output.basic.po.ContainerPOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from output_tt_container
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from output_tt_container
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from output_tt_container
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.topisv.wms.output.basic.po.ContainerPOExample">
+    delete from output_tt_container
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.topisv.wms.output.basic.po.ContainerPO">
+    insert into output_tt_container (id, container_code, container_type, 
+      use_batch, container_status, create_time, 
+      create_owner, update_time, update_owner, 
+      optimistic, warehouse_code, location_code, 
+      shelf_code)
+    values (#{id,jdbcType=VARCHAR}, #{containerCode,jdbcType=VARCHAR}, #{containerType,jdbcType=VARCHAR}, 
+      #{useBatch,jdbcType=VARCHAR}, #{containerStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createOwner,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateOwner,jdbcType=VARCHAR}, 
+      #{optimistic,jdbcType=INTEGER}, #{warehouseCode,jdbcType=VARCHAR}, #{locationCode,jdbcType=VARCHAR}, 
+      #{shelfCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.topisv.wms.output.basic.po.ContainerPO">
+    insert into output_tt_container
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="containerCode != null">
+        container_code,
+      </if>
+      <if test="containerType != null">
+        container_type,
+      </if>
+      <if test="useBatch != null">
+        use_batch,
+      </if>
+      <if test="containerStatus != null">
+        container_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createOwner != null">
+        create_owner,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateOwner != null">
+        update_owner,
+      </if>
+      <if test="optimistic != null">
+        optimistic,
+      </if>
+      <if test="warehouseCode != null">
+        warehouse_code,
+      </if>
+      <if test="locationCode != null">
+        location_code,
+      </if>
+      <if test="shelfCode != null">
+        shelf_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="containerCode != null">
+        #{containerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="containerType != null">
+        #{containerType,jdbcType=VARCHAR},
+      </if>
+      <if test="useBatch != null">
+        #{useBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="containerStatus != null">
+        #{containerStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOwner != null">
+        #{createOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateOwner != null">
+        #{updateOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="optimistic != null">
+        #{optimistic,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseCode != null">
+        #{warehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="locationCode != null">
+        #{locationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shelfCode != null">
+        #{shelfCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.topisv.wms.output.basic.po.ContainerPOExample" resultType="java.lang.Integer">
+    select count(*) from output_tt_container
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update output_tt_container
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.containerCode != null">
+        container_code = #{record.containerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.containerType != null">
+        container_type = #{record.containerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useBatch != null">
+        use_batch = #{record.useBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.containerStatus != null">
+        container_status = #{record.containerStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createOwner != null">
+        create_owner = #{record.createOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateOwner != null">
+        update_owner = #{record.updateOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optimistic != null">
+        optimistic = #{record.optimistic,jdbcType=INTEGER},
+      </if>
+      <if test="record.warehouseCode != null">
+        warehouse_code = #{record.warehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.locationCode != null">
+        location_code = #{record.locationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shelfCode != null">
+        shelf_code = #{record.shelfCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update output_tt_container
+    set id = #{record.id,jdbcType=VARCHAR},
+      container_code = #{record.containerCode,jdbcType=VARCHAR},
+      container_type = #{record.containerType,jdbcType=VARCHAR},
+      use_batch = #{record.useBatch,jdbcType=VARCHAR},
+      container_status = #{record.containerStatus,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_owner = #{record.createOwner,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_owner = #{record.updateOwner,jdbcType=VARCHAR},
+      optimistic = #{record.optimistic,jdbcType=INTEGER},
+      warehouse_code = #{record.warehouseCode,jdbcType=VARCHAR},
+      location_code = #{record.locationCode,jdbcType=VARCHAR},
+      shelf_code = #{record.shelfCode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.topisv.wms.output.basic.po.ContainerPO">
+    update output_tt_container
+    <set>
+      <if test="containerCode != null">
+        container_code = #{containerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="containerType != null">
+        container_type = #{containerType,jdbcType=VARCHAR},
+      </if>
+      <if test="useBatch != null">
+        use_batch = #{useBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="containerStatus != null">
+        container_status = #{containerStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOwner != null">
+        create_owner = #{createOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateOwner != null">
+        update_owner = #{updateOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="optimistic != null">
+        optimistic = #{optimistic,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseCode != null">
+        warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="locationCode != null">
+        location_code = #{locationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shelfCode != null">
+        shelf_code = #{shelfCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.topisv.wms.output.basic.po.ContainerPO">
+    update output_tt_container
+    set container_code = #{containerCode,jdbcType=VARCHAR},
+      container_type = #{containerType,jdbcType=VARCHAR},
+      use_batch = #{useBatch,jdbcType=VARCHAR},
+      container_status = #{containerStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_owner = #{createOwner,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_owner = #{updateOwner,jdbcType=VARCHAR},
+      optimistic = #{optimistic,jdbcType=INTEGER},
+      warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      location_code = #{locationCode,jdbcType=VARCHAR},
+      shelf_code = #{shelfCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

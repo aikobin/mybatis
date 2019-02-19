@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--数据库驱动-->
+    <classPathEntry    location="mysql-connector-java-5.0.8-bin.jar"/>
+    <context id="DB2Tables"    targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接地址账号密码-->
+         <!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.197:3306/jcwms" userId="root" password="paiuroot"> 
+  	 -->
+	   <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.32.140:3306/springbootdemo" userId="root" password="root">
+		   <!--  <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.197:3306/jcwms" userId="root" password="paiuroot">  	 -->
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.topisv.wms.output.basic.po" targetProject="src">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="com.topisv.wms.mapper.output.basic" targetProject="src">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+	
+        <!--生成Dao类存放位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.topisv.wms.output.basic.dao" targetProject="src">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--生成对应表及类名-->
+     <!-- 
+		<table tableName="output_tt_origina_order_inout_userinfo" domainObjectName="OriginaOrderInoutUserInfoPO" ></table>
+		<table tableName="output_tt_origina_order_insurance" domainObjectName="OriginaOrderInsurancePO" ></table>
+		<table tableName="output_tt_origina_order_invoice" domainObjectName="OriginaOrderInvoicePO" ></table>
+		<table tableName="output_tt_origina_order_logistics" domainObjectName="OriginaOrderLogisticsPO" ></table>
+		<table tableName="output_tt_origina_order_sku" domainObjectName="OriginaOrderSkuPO" ></table>
+	    <table tableName="output_tt_origina_related_order" domainObjectName="OriginaRelatedOrderPO" ></table>
+		
+			  <table tableName="tl_order_operate_log" domainObjectName="OrderOperateLog" ></table>
+			  		
+			    <table tableName="output_tt_task_goods_relation" domainObjectName="TaskGoodsRelationPO" ></table>
+				  <table tableName="output_tt_task_work_detail" domainObjectName="TaskWorkDetailPO" ></table>
+				   <table tableName="output_tt_join_occupy" domainObjectName="JoinOccupyPO" ></table>
+				   <table tableName="tm_logistics_company" domainObjectName="LogisticsCompanyPO" ></table>	  
+			  
+					<table tableName="output_tt_origina_order_sku" domainObjectName="OriginaOrderSkuPO" ></table>	  -->
+		    <!-- <table tableName="output_tt_origina_order_insurance_copy" domainObjectName="OriginaOrderInsurancePO" ></table>
+		<table tableName="output_tt_origina_order_invoice_copy" domainObjectName="OriginaOrderInvoicePO" ></table>
+		<table tableName="output_tt_origina_order_sku_copy" domainObjectName="OriginaOrderSkuPO" ></table>
+		  -->
+		  
+		 		<table tableName="output_tt_container" domainObjectName="ContainerPO" ></table>
+
+		
+				
+				 
+			 
+
+	
+
+    </context>
+</generatorConfiguration>
